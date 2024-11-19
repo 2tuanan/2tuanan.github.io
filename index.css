@@ -1,0 +1,17 @@
+@keyframes colorfulMovement {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+
+  .colorful-dynamic-bg {
+    background: linear-gradient(45deg, #00688B, #015A78, #024C64, #008DBB, #017E9A);
+    background-size: 400% 400%; /* Makes the background large for smooth motion */
+    animation: colorfulMovement 20s ease infinite; /* Continuous smooth animation */
+  }
