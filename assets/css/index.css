@@ -22,3 +22,16 @@
     background-size: 400% 100%; /* Makes the background large for smooth motion */
     animation: colorfulMovement 15s ease infinite; /* Continuous smooth animation */
   }
+
+  #projects figure img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+
+  #projects .group:hover figure img {
+    transform: translateY(10px);
+  }

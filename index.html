@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web</title>
-  <link href="index.css" rel="stylesheet">
+  <link href="assets/css/index.css" rel="stylesheet">
+  
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-cyan-950 text-white">
@@ -13,10 +14,10 @@
     <p class="mt-4 text-xl md:text-2xl opacity-80 animate-slide-in">A Web Developer</p>
   </header>
 
-  <section id="skills-education" class="py-14 px-10 mx-10 bg-cyan-600 bg-opacity-10 backdrop-blur-md rounded-[30px]">
-    <div class="p-6">
+  <section id="skills-education" class="py-14 px-10 mx-10">
+    <div class="p-6 bg-cyan-600 bg-opacity-10 backdrop-blur-md rounded-[30px]">
       <h2 class="text-3xl font-bold text-center mb-8">Skills & Education</h2>
-      <div class="relative border-l-2 border-cyan-700/50">
+      <div class="relative border-l-2 border-cyan-700/50 ml-6">
         <div class="mb-8 ml-6">
           <div class="p-6 rounded-r-[20px] shadow-md">
             <h3 class="text-lg font-semibold text-cyan-300">Web Development Skills</h3>
@@ -38,18 +39,19 @@
   </section>  
 
   <section id="projects" class="py-14 px-10 mx-10">
-    <div class="p-6">
-      <h2 class="text-3xl font-bold text-center mb-8">Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div> <!--Project 1 as Card-->
+    <div class="">
+      <h2 class="text-3xl font-bold text-center mb-10">Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+        <div class="p-6 bg-amber-400/75 rounded-[30px] "> <!--Project 1 as Card-->
           <div> <!--Infor-->
             <span>Website</span>
             <h3>UI/UX Portfolio</h3>
           </div>
           <div> <!--Image of Website I want it will move down a little bit in y-axis when hovering-->
             <div>
-              <figure>
-                <img src="" alt="">
+              <figure class="relative w-full h-48 overflow-hidden">
+                <img class="w-[150%] h-[150%] object-cover object-top-left transition-transform duration-300 ease-in-out group-hover:-translate-y-2"
+                src="assets/images/ux-ui_portfolio.png" alt="">
               </figure>
             </div>
           </div>
@@ -61,7 +63,7 @@
   </section>
   <footer>
     <div>
-      <p>&copy; 2024 [Your Name]. All Rights Reserved.</p>
+      <p>&copy; AP. All Rights Reserved 2024</p>
       <div class="mt-2 space-x-4">
         <a href="#" class="hover:text-white">GitHub</a>
         <a href="#" class="hover:text-white">LinkedIn</a>
