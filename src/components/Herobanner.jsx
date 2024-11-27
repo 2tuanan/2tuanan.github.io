@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = () => {
+const Herobanner = () => {
   return (
     <div>
       <header className="w-screen h-80 md:h-96 z-1 relative flex flex-col justify-center items-center">
@@ -15,4 +15,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Herobanner;
