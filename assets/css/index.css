@@ -1,0 +1,37 @@
+@keyframes colorfulMovement {
+    0% {
+      background-position: 0% 60%;
+    }
+    25% {
+      background-position: 50% 0%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    75% {
+      background-position: 50% 10%;
+    }
+    100% {
+      background-position: 0% 60%;
+    }
+  }
+
+  .colorful-dynamic-bg {
+    background: radial-gradient(8.91% 30.32% at 66.75% 19.74%, rgba(178, 197, 109, 0.50) 0%, rgba(96, 184, 112, 0.50) 20.65%, rgba(62, 149, 120, 0.50) 43.66%, rgba(40, 96, 116, 0.50) 68.69%, rgba(1, 90, 120, 0.50) 100%), radial-gradient(4.94% 24.62% at 24.68% 39.97%, #72CDC1 0%, rgba(11, 142, 154, 0.80) 56.5%, rgba(33, 109, 124, 0.80) 78.18%, rgba(1, 90, 120, 0.80) 100%);
+    /* background: radial-gradient(39.1% 31.98% at 36.28% 60.56%, #2D9688 0%, #016E78 37.5%, #015A78 100%); */
+    background-size: 400% 100%; /* Makes the background large for smooth motion */
+    animation: colorfulMovement 15s ease infinite; /* Continuous smooth animation */
+  }
+
+  #projects figure img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+
+  #projects .group:hover figure img {
+    transform: translateY(10px);
+  }
