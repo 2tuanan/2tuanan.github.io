@@ -5,7 +5,7 @@ const Skills_Education = () => {
     <div>
       <section id="skills-education" class="py-14 px-10 mx-10">
         <div class="p-6 bg-cyan-600 bg-opacity-10 backdrop-blur-md rounded-[30px]">
-          <h2 class="text-3xl font-bold text-center mb-8">
+          <h2 class="text-4xl font-bold text-center mb-8">
             Skills & Education
           </h2>
           <div class="relative border-l-2 border-cyan-700/50 ml-6">
