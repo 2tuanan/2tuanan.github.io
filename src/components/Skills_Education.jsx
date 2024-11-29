@@ -11,7 +11,7 @@ const Skills_Education = () => {
           <div class="relative border-l-2 border-cyan-700/50 ml-6">
             <div class="mb-8 ml-6">
               <div class="p-6 rounded-r-[20px] shadow-md">
-                <h3 class="text-lg font-semibold text-cyan-300">
+                <h3 class="text-lg font-semibold text-cyan-800 dark:text-cyan-300">
                   Web Development Skills
                 </h3>
                 <p class="mt-2">HTML, CSS, JavaScript, React</p>
@@ -19,7 +19,7 @@ const Skills_Education = () => {
             </div>
             <div class="mb-8 ml-6">
               <div class="p-6 rounded-r-[20px] shadow-md">
-                <h3 class="text-lg font-semibold text-cyan-300">Education</h3>
+                <h3 class="text-lg font-semibold text-cyan-800 dark:text-cyan-300">Education</h3>
                 <ul class="mt-2 space-y-1">
                   <li>Google IT Support Specialization</li>
                   <li>Google UX Design Specialization</li>
