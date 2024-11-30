@@ -8,7 +8,7 @@ const Projects = () => {
           <h2 className="text-4xl font-bold text-center mb-10">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full ">
             <div className="bg-amber-400/75 rounded-[30px] transition-transform duration-500 ease-in-out overflow-hidden hover:scale-105 hover:shadow-lg group"> {/*Project 1 as Card */}
-              <div className="text-right p-6 pr-12"> {/* Title of Project */}
+              <div className="text-right text-cyan-950 p-6 pr-12"> {/* Title of Project */}
                 <span>Website</span>
                 <h3 className="text-2xl">UI/UX Portfolio</h3>
               </div>
