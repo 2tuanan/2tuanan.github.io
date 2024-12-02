@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <div>
             <footer>
-                <div>
+                <div className='mx-auto text-center'>
                     <p>&copy; AP. All Rights Reserved 2024</p>
                     <div className="mt-2 space-x-4">
                         <a href="#" className="hover:text-white">GitHub</a>
