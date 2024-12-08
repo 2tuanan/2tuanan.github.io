@@ -4,6 +4,11 @@ import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 const Herobanner = () => {
   return (
     <Parallax pages={2}>
+      <ParallaxLayer speed={0.3} style={{zIndex: -3}}>
+        <img
+        className="absolute bottom-0 w-screen"
+        src="/assets/images/SecMount.png" alt="" />
+      </ParallaxLayer>
       <ParallaxLayer speed={0.35} style={{zIndex: -2}}>
         <img
         className="absolute bottom-0 w-screen"
