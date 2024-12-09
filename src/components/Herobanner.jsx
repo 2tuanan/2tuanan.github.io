@@ -3,33 +3,12 @@ import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
 const Herobanner = () => {
   return (
-    <Parallax pages={2}>
-      <ParallaxLayer speed={0.3} style={{zIndex: -3}}>
-        <img
-        className="absolute bottom-0 w-screen"
-        src="/assets/images/SecMount.png" alt="" />
-      </ParallaxLayer>
-      <ParallaxLayer speed={0.35} style={{zIndex: -2}}>
-        <img
-        className="absolute bottom-0 w-screen"
-        src="/assets/images/ForeMount.png" alt="" />
-      </ParallaxLayer>
-      <ParallaxLayer speed={0.38} style={{zIndex: -1}}>
-        <img
-        className="absolute bottom-0 w-screen"
-        src="/assets/images/BackTrees.png" alt="" />
-      </ParallaxLayer>
-      <ParallaxLayer speed={0.4}
-      >
-        <img
-        className="absolute bottom-0 w-screen" 
-        src="/assets/images/ForeTrees.png" alt="" />
-      </ParallaxLayer>
+    <Parallax pages={1}>
       <div className="w-screen h-80 md:h-96 z-1 relative flex flex-col justify-center items-center">
-        <h1 className="text-6xl md:text-8xl text-cyan-900 dark:text-cyan-300 font-bold tracking-wider animate-fade-in">
+        <h1 className="text-6xl md:text-8xl text-cyan-900 dark:text-cyan-300 font-bold tracking-wider">
           Hi, I'm ...
         </h1>
-        <p className="mt-4 text-xl md:text-2xl opacity-80 animate-slide-in">
+        <p className="mt-4 text-xl md:text-2xl opacity-80">
           A Web Developer
         </p>
       </div>
