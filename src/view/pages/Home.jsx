@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Projects from '../../components/Projects';
 import Skills_Education from '../../components/Skills_Education';
 import Herobanner from '../../components/Herobanner';
@@ -27,6 +27,12 @@ const Home = () => {
                 <img
                 className="absolute bottom-0 w-screen" 
                 src="/assets/images/ForeTrees.png" alt="" />
+            </ParallaxLayer>
+            <ParallaxLayer offset={1} factor={1}>
+                <div className='w-screen h-screen flex flex-col justify-center items-center bg-gray-100'>
+                    <h1>About</h1>
+                    <p>This is the About section content</p>
+                </div>
             </ParallaxLayer>
         </Parallax>
     );
