@@ -1,42 +1,19 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { gsap } from 'gsap';
+import React from "react";
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
-const HeroBanner = () => {
-  useEffect(() => {
-    // Rotate the 'G' continuously
-    gsap.to('.rotating-g', {
-      rotation: 360,
-      repeat: -1,
-      ease: 'linear',
-      duration: 10,
-    });
-  }, []);
-
+const Herobanner = () => {
   return (
-    <div className="relative h-screen bg-gray-900 flex items-center justify-center">
-      <div className="absolute top-4 left-4 text-white">
-        <nav className="space-x-4">
-          <a href="#info" className="hover:underline">
-            Info
-          </a>
-          <a href="#work" className="hover:underline">
-            Work
-          </a>
-          <a href="#archive" className="hover:underline">
-            Archive
-          </a>
-          <a href="#contact" className="hover:underline">
-            Contact
-          </a>
-        </nav>
+    <Parallax pages={1}>
+      <div className="w-screen h-80 md:h-96 z-1 relative flex flex-col justify-center items-center">
+        <h1 className="text-6xl md:text-8xl text-cyan-900 dark:text-cyan-300 font-bold tracking-wider">
+          Hi, I'm ...
+        </h1>
+        <p className="mt-4 text-xl md:text-2xl opacity-80">
+          A Web Developer
+        </p>
       </div>
-      <div className="rotating-g text-9xl text-white font-bold">G</div>
-      <div className="absolute bottom-4 left-4 w-full">
-        <div className="h-2 bg-white rounded-full progress-bar"></div>
-      </div>
-    </div>
+    </Parallax>
   );
 };
 
-export default HeroBanner;
+export default Herobanner;

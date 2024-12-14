@@ -8,28 +8,28 @@ const Home = () => {
     return (
         <Parallax pages={4}>
             {/* Herobanner */}
-            <ParallaxLayer speed={0.3} style={{zIndex: -3}}>
+            <ParallaxLayer speed={-0.5} style={{zIndex: -3}}>
                 <img
                 className="absolute bottom-0 w-screen"
                 src="/assets/images/SecMount.svg" alt="" />
             </ParallaxLayer>
-            <ParallaxLayer speed={0.35} style={{zIndex: -2}}>
+            <ParallaxLayer speed={-0.4} style={{zIndex: -2}}>
                 <img
                 className="absolute bottom-0 w-screen"
                 src="/assets/images/ForeMount.png" alt="" />
             </ParallaxLayer>
-            <ParallaxLayer speed={0.38} style={{zIndex: -1}}>
+            <ParallaxLayer speed={-0.3} style={{zIndex: -1}}>
                 <img
                 className="absolute bottom-0 w-screen"
                 src="/assets/images/BackTrees.png" alt="" />
             </ParallaxLayer>
-            <ParallaxLayer speed={0.4}>
+            <ParallaxLayer speed={-0.001}>
                 <img
                 className="absolute bottom-0 w-screen" 
                 src="/assets/images/ForeTrees.png" alt="" />
             </ParallaxLayer>
             <ParallaxLayer offset={1} factor={1}>
-                <div className='w-screen h-screen flex flex-col justify-center items-center bg-gray-100'>
+                <div className='w-screen h-screen flex flex-col justify-center items-center bg-black'>
                     <h1>About</h1>
                     <p>This is the About section content</p>
                 </div>
