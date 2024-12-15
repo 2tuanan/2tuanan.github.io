@@ -8,16 +8,9 @@ const Home = () => {
     return (
         <Parallax pages={4}>
             {/* Herobanner */}
-            <ParallaxLayer offset={0} speed={-1} style={{zIndex: -6}}>
+            <ParallaxLayer offset={0} speed={-0.6} style={{zIndex: -6}}>
                 <div
-                    className="absolute top-36 right-1/4 transform -translate-x-1/2"
-                    style={{
-                        width: '200px',
-                        height: '200px',
-                        background: 'radial-gradient(circle, #FFFFFF, #FAF4C3)',
-                        borderRadius: '50%',
-                        transition: 'width 0.5s, height 0.5s',
-                    }}
+                    className="absolute top-36 right-1/4 transform -translate-x-1/2 w-[200px] h-[200px] bg-gradient-to-br from-[#FFFFFF] to-[#FAF4C3] rounded-full transition-all"
                 />
             </ParallaxLayer>
             <ParallaxLayer
@@ -29,9 +22,27 @@ const Home = () => {
                     transition: 'background 0.5s',
                 }}
             />
-            <ParallaxLayer
-                offset={0}
-            />
+            <ParallaxLayer speed={1} horizontal style={{zIndex:-1}}>
+                <img 
+                className='absolute top-[42rem]'
+                src="/assets/images/Cloud-Left1.svg" alt="" />
+            </ParallaxLayer>
+            <ParallaxLayer speed={2} horizontal style={{zIndex:-1}}>
+                <img 
+                className='absolute top-[12rem] left-[25rem]'
+                src="/assets/images/Cloud-Left2.svg" alt="" />
+            </ParallaxLayer>
+            <ParallaxLayer speed={-1} horizontal style={{zIndex:-1}}>
+                <img 
+                className='absolute top-[10rem] right-[-35rem]'
+                src="/assets/images/Cloud-Right1.svg" alt="" />
+            </ParallaxLayer>
+            <ParallaxLayer speed={-1} horizontal style={{zIndex:-1}}>
+                <img 
+                className='absolute top-[20rem] right-[-30rem]'
+                src="/assets/images/Cloud-Right2.svg" alt="" />
+            </ParallaxLayer>
+            {/* Mount and Trees */}
             <ParallaxLayer speed={-0.6} style={{zIndex: -5}}>
                 <img
                 className="absolute bottom-0 w-screen"
