@@ -1,85 +1,90 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Projects from '../../components/Projects';
 import Skills_Education from '../../components/Skills_Education';
 import Herobanner from '../../components/Herobanner';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 
 const Home = () => {
+    const [offsetY, setOffsetY] = useState(0);
+    const [showNav, setShowNav] = useState(false);
+
+    const handleScroll = () => {
+        setOffsetY(window.scrollY)
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+            const sectionTop = aboutSection.getBoundingClientRect().top;
+            setShowNav(sectionTop <= 50);
+        }
+    }
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
     return (
-        <Parallax pages={4}>
-            {/* Herobanner */}
-            <ParallaxLayer offset={0} speed={-0.6} style={{zIndex: -6}}>
-                <div
-                    className="absolute top-36 right-1/4 transform -translate-x-1/2 w-[200px] h-[200px] bg-gradient-to-br from-[#FFFFFF] to-[#FAF4C3] rounded-full transition-all"
+        <>  
+            {/* Navlink */}
+            <div className={`fixed top-0 left-0 z-10 transition-transform duration-300 ease-in-out ${
+                showNav ? 'transform translate-y-0' : 'transform -translate-y-full'
+            }`}>
+                <nav>
+                    <ul className='flex flex-col gap-4 bg-transparent text-white pl-6 pt-6'>
+                        <li><a href="#about" className='hover:text-cyan-300'>About</a></li>
+                        <li><a href="#projects" className='hover:text-cyan-300'>Projects</a></li>
+                        <li><a href="#contact" className='hover:text-cyan-300'>Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+
+
+            <div className='relative h-screen overflow-hidden'>
+                <div className='absolute -z-10 top-0 left-0 w-full h-full bg-gradient-to-b from-[#9ECCCA] 
+                to-[#D4F0DE]'></div>
+                {/* Clouds */}
+                <img className='absolute -left-24 bottom-1/4 -z-[1] scale-[0.6] md:scale-75 lg:scale-100' 
+                    src="/assets/images/Cloud-Left1.svg" alt="" />
+                <img className='absolute left-1/3 top-1/4 -z-[1] scale-50 md:scale-75 lg:scale-100'
+                    src="/assets/images/Cloud-Left2.svg" alt="" />
+                <img className='absolute -right-10 md:right-0 top-1/3 -z-[2] scale-50 md:scale-75 lg:scale-100'
+                    src="/assets/images/Cloud-Right1.svg" alt="" />
+                <img className='absolute right-10 top-1/2 scale-50 md:scale-75 lg:scale-100'
+                    src="/assets/images/Cloud-Right2.svg" alt="" />
+                {/* Mountains */}
+                <img className='absolute bottom-0 w-full -z-[5]'
+                    style={{transform: `translateY(${offsetY * 0.3}px)`}}
+                    src="/assets/images/FourMount.svg" alt="" />
+                <img className='absolute bottom-0 w-full -z-[4]'
+                    style={{transform: `translateY(${offsetY * 0.25}px)`}}
+                    src="/assets/images/ThirMount.svg" alt="" />
+                <img className='absolute bottom-0 w-full -z-[3]'
+                    style={{transform: `translateY(${offsetY * 0.2}px)`}}
+                    src="/assets/images/SecMount.svg" alt="" />
+                <img className='absolute bottom-0 w-full -z-[2]'
+                    style={{transform: `translateY(${offsetY * 0.15}px)`}}
+                    src="/assets/images/ForeMount.png" alt="" />
+                {/* Trees */}
+                <img className='absolute bottom-0 w-full -z-[2]'
+                    style={{transform: `translateY(${offsetY * 0.1}px)`}}
+                    src="/assets/images/BackTrees.png" alt="" />
+                <img className="absolute bottom-0 w-full"
+                    src="/assets/images/ForeTrees.png"
+                    alt=""
+                    style={{transform: `translateY(${offsetY * 0}px)`}}
                 />
-            </ParallaxLayer>
-            <ParallaxLayer
-                offset={0}
-                style={{
-                    absolute: 'top-0 left-0 w-screen h-screen',
-                    background: 'linear-gradient(to bottom, #9ECCCA, #D4F0DE)',
-                    zIndex: -7,
-                    transition: 'background 0.5s',
-                }}
-            />
-            <ParallaxLayer speed={1} horizontal style={{zIndex:-1}}>
-                <img 
-                className='absolute top-[42rem]'
-                src="/assets/images/Cloud-Left1.svg" alt="" />
-            </ParallaxLayer>
-            <ParallaxLayer speed={2} horizontal style={{zIndex:-1}}>
-                <img 
-                className='absolute top-[12rem] left-[25rem]'
-                src="/assets/images/Cloud-Left2.svg" alt="" />
-            </ParallaxLayer>
-            <ParallaxLayer speed={-1} horizontal style={{zIndex:-1}}>
-                <img 
-                className='absolute top-[10rem] right-[-35rem]'
-                src="/assets/images/Cloud-Right1.svg" alt="" />
-            </ParallaxLayer>
-            <ParallaxLayer speed={-1} horizontal style={{zIndex:-1}}>
-                <img 
-                className='absolute top-[20rem] right-[-30rem]'
-                src="/assets/images/Cloud-Right2.svg" alt="" />
-            </ParallaxLayer>
-            {/* Mount and Trees */}
-            <ParallaxLayer speed={-0.6} style={{zIndex: -5}}>
-                <img
-                className="absolute bottom-0 w-screen"
-                src="/assets/images/FourMount.svg" alt="" />
-            </ParallaxLayer>
-            <ParallaxLayer speed={-0.5} style={{zIndex: -4}}>
-                <img
-                className="absolute bottom-0 w-screen"
-                src="/assets/images/ThirMount.svg" alt="" />
-            </ParallaxLayer>
-            <ParallaxLayer speed={-0.3} style={{zIndex: -3}}>
-                <img
-                className="absolute bottom-0 w-screen"
-                src="/assets/images/SecMount.svg" alt="" />
-            </ParallaxLayer>
-            <ParallaxLayer speed={-0.2} style={{zIndex: -2}}>
-                <img
-                className="absolute bottom-0 w-screen"
-                src="/assets/images/ForeMount.png" alt="" />
-            </ParallaxLayer>
-            <ParallaxLayer speed={-0.1} style={{zIndex: -1}}>
-                <img
-                className="absolute bottom-0 w-screen"
-                src="/assets/images/BackTrees.png" alt="" />
-            </ParallaxLayer>
-            <ParallaxLayer speed={-0.005}>
-                <img
-                className="absolute bottom-0 w-screen" 
-                src="/assets/images/ForeTrees.png" alt="" />
-            </ParallaxLayer>
-            <ParallaxLayer offset={1} factor={1}>
-                <div className='w-screen h-screen flex flex-col justify-center items-center bg-black'>
-                    <h1 className=''>About</h1>
-                    <p>This is the About section content</p>
-                </div>
-            </ParallaxLayer>
-        </Parallax>
+            </div>
+            <section id='about' className='h-screen bg-black'>
+                <h1>About</h1>
+                <p>This is about section</p>
+            </section>
+            <section id='projects' className='h-screen bg-white'>
+                <h1>Projects</h1>
+            </section>
+            <section id='contact' className='h-screen bg-black'>
+                <h1>Contact</h1>
+                <p>This is contact section</p>
+            </section>
+        </>
+        
     );
 };
 
