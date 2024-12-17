@@ -7,13 +7,46 @@ import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 const Home = () => {
     const [offsetY, setOffsetY] = useState(0);
     const [showNav, setShowNav] = useState(false);
+    const [progress, setProgress] = useState({
+        about: 0,
+        projects: 0,
+        contact: 0
+    })
 
     const handleScroll = () => {
+        const calculateProgress = (sectionId) => {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const scrollYInSection = Math.max(0, window.scrollY - sectionTop);
+                if (window.scrollY < sectionTop || window.scrollY > sectionTop + sectionHeight - 1) return 0;
+                return Math.min((scrollYInSection / sectionHeight) * 100, 100);
+            }
+            return 0;
+        }
+        setProgress({
+            about: calculateProgress('about'),
+            projects: calculateProgress('projects')
+        })
+
+        // Show/Hide Nav
         setOffsetY(window.scrollY)
         const aboutSection = document.getElementById('about');
         if (aboutSection) {
             const sectionTop = aboutSection.getBoundingClientRect().top;
             setShowNav(sectionTop <= 50);
+        }
+    }
+    const handleSmoothScroll = (e, targetId) => {
+        e.preventDefault();
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+            window.scrollTo({
+                top: targetSection.offsetTop,
+                behavior: 'smooth',
+                block: 'start'
+            })
         }
     }
     useEffect(() => {
@@ -27,10 +60,24 @@ const Home = () => {
                 showNav ? 'transform translate-y-0' : 'transform -translate-y-full'
             }`}>
                 <nav>
-                    <ul className='flex flex-col gap-4 bg-transparent text-white pl-6 pt-6'>
-                        <li><a href="#about" className='hover:text-cyan-300'>About</a></li>
-                        <li><a href="#projects" className='hover:text-cyan-300'>Projects</a></li>
-                        <li><a href="#contact" className='hover:text-cyan-300'>Contact</a></li>
+                    <ul className='flex flex-col gap-4 bg-transparent text-white pl-6 pt-6 items-center'>
+                        <li style={{background: `linear-gradient(to right, #0891b2 ${progress.about}%, transparent ${progress.about}%)`,
+                            transition: 'background 0.3s ease-in-out'}} className='relative group'>
+                            <a onClick={(e) => handleSmoothScroll(e, "about")} href="#about" className="block p-1 text-white transition-transform duration-300 hover:text-cyan-300">
+                                Info
+                                <span className="absolute inset-0 border border-cyan-300 opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300"></span>
+                            </a>
+                        </li>
+                        <li style={{background: `linear-gradient(to right, #0891b2 ${progress.projects}%, transparent ${progress.projects}%)`,
+                            transition: 'background 0.3s ease-in-out'}} className='relative group'>
+                            <a onClick={(e) => handleSmoothScroll(e, "projects")} href="#projects" className="block p-1 text-white transition-transform duration-300 hover:text-cyan-300">
+                                Work
+                                <span className="absolute inset-0 border border-cyan-300 opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300"></span>
+                            </a>
+                        </li>
+                        <li className={`relative ${progress.contact > 0 && progress.contact < 100 ? "text-cyan-300" : "text-white"}`}>
+                            <a onClick={(e) => handleSmoothScroll(e, "contact")} href="#contact" className='hover:text-cyan-300'>Contact</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -72,11 +119,19 @@ const Home = () => {
                     style={{transform: `translateY(${offsetY * 0}px)`}}
                 />
             </div>
-            <section id='about' className='h-screen bg-black'>
+            <section id='about' className='h-full bg-black'>
                 <h1>About</h1>
                 <p>This is about section</p>
+                <Skills_Education />
+                <img src="https://picsum.photos/200/300" alt="" />
+                <img src="https://picsum.photos/200/300" alt="" />
+                <img src="https://picsum.photos/200/300" alt="" />
+                <img src="https://picsum.photos/200/300" alt="" />
+                <img src="https://picsum.photos/200/300" alt="" />
+                <img src="https://picsum.photos/200/300" alt="" />
+                <img src="https://picsum.photos/200/300" alt="" />
             </section>
-            <section id='projects' className='h-screen bg-white'>
+            <section id='projects' className='h-screen bg-cyan-600'>
                 <h1>Projects</h1>
             </section>
             <section id='contact' className='h-screen bg-black'>
