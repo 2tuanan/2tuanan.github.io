@@ -3,6 +3,7 @@ import Projects from '../../components/Projects';
 import Skills_Education from '../../components/Skills_Education';
 import Herobanner from '../../components/Herobanner';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
+import { b } from 'framer-motion/client';
 
 const Home = () => {
     const [offsetY, setOffsetY] = useState(0);
@@ -20,8 +21,10 @@ const Home = () => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.offsetHeight;
                 const scrollYInSection = Math.max(0, window.scrollY - sectionTop);
-                if (window.scrollY < sectionTop || window.scrollY > sectionTop + sectionHeight - 1) return 0;
-                return Math.min((scrollYInSection / sectionHeight) * 100, 100);
+                const lingerThreshold = 0.2;
+                if (window.scrollY < sectionTop || window.scrollY > (sectionTop + sectionHeight - 1)) return 0;
+                const progress = (scrollYInSection / (sectionHeight * (1-lingerThreshold))) * 100;
+                return Math.min(progress, 100);
             }
             return 0;
         }
@@ -53,6 +56,21 @@ const Home = () => {
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
+
+    useEffect(() => {
+        let isScrolling = false;
+
+        const handleWheel = (e) => {
+            e.preventDefault();
+            const scrollSpeed = 0.6;
+            const newScrollY = window.scrollY + e.deltaY * scrollSpeed;
+            
+            window.scrollTo({top: newScrollY, behavior: 'instant'});
+        }
+
+        window.addEventListener('wheel', handleWheel, { passive: false });
+        return () => window.removeEventListener('wheel', handleWheel);
+    }, [])
     return (
         <>  
             {/* Navlink */}
@@ -60,22 +78,24 @@ const Home = () => {
                 showNav ? 'transform translate-y-0' : 'transform -translate-y-full'
             }`}>
                 <nav>
-                    <ul className='flex flex-col gap-4 bg-transparent text-white pl-6 pt-6 items-center'>
-                        <li style={{background: `linear-gradient(to right, #0891b2 ${progress.about}%, transparent ${progress.about}%)`,
-                            transition: 'background 0.3s ease-in-out'}} className='relative group'>
-                            <a onClick={(e) => handleSmoothScroll(e, "about")} href="#about" className="block p-1 text-white transition-transform duration-300 hover:text-cyan-300">
-                                Info
-                                <span className="absolute inset-0 border border-cyan-300 opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300"></span>
+                    <ul className='flex flex-col gap-4 text-white pl-6 pt-6 items-start'>
+                    <li style={{background: `linear-gradient(to right, #134e4a ${progress.about}%, transparent ${progress.about}%)`}} 
+                        className='relative group rounded-2xl'>   
+                            <div ></div>
+                            <a onClick={(e) => handleSmoothScroll(e, "about")} href="#about" className="block px-2 py-1 text-white transition-transform duration-300 hover:text-cyan-200">
+                                About
+                                <span className="absolute inset-0 border border-cyan-200 opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 rounded-2xl"></span>
                             </a>
                         </li>
-                        <li style={{background: `linear-gradient(to right, #0891b2 ${progress.projects}%, transparent ${progress.projects}%)`,
-                            transition: 'background 0.3s ease-in-out'}} className='relative group'>
-                            <a onClick={(e) => handleSmoothScroll(e, "projects")} href="#projects" className="block p-1 text-white transition-transform duration-300 hover:text-cyan-300">
+                        <li style={{background: `linear-gradient(to right, #134e4a ${progress.projects}%, transparent ${progress.projects}%)`}} 
+                        className='relative group rounded-2xl'>   
+                            <div ></div>
+                            <a onClick={(e) => handleSmoothScroll(e, "projects")} href="#projects" className="block px-2 py-1 text-white transition-transform duration-300 hover:text-cyan-200">
                                 Work
-                                <span className="absolute inset-0 border border-cyan-300 opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300"></span>
+                                <span className="absolute inset-0 border border-cyan-200 opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 rounded-2xl"></span>
                             </a>
                         </li>
-                        <li className={`relative ${progress.contact > 0 && progress.contact < 100 ? "text-cyan-300" : "text-white"}`}>
+                        <li>
                             <a onClick={(e) => handleSmoothScroll(e, "contact")} href="#contact" className='hover:text-cyan-300'>Contact</a>
                         </li>
                     </ul>
@@ -108,30 +128,25 @@ const Home = () => {
                     src="/assets/images/SecMount.svg" alt="" />
                 <img className='absolute bottom-0 w-full -z-[2]'
                     style={{transform: `translateY(${offsetY * 0.15}px)`}}
-                    src="/assets/images/ForeMount.png" alt="" />
+                    src="/assets/images/ForeMount.svg" alt="" />
                 {/* Trees */}
                 <img className='absolute bottom-0 w-full -z-[2]'
                     style={{transform: `translateY(${offsetY * 0.1}px)`}}
-                    src="/assets/images/BackTrees.png" alt="" />
-                <img className="absolute bottom-0 w-full"
-                    src="/assets/images/ForeTrees.png"
+                    src="/assets/images/BackTrees.svg" alt="" />
+                <img className="absolute -bottom-[1px] w-full"
+                    src="/assets/images/ForeTrees.svg"
                     alt=""
                     style={{transform: `translateY(${offsetY * 0}px)`}}
                 />
             </div>
-            <section id='about' className='h-full bg-black'>
+            <section id='about' className='h-full bg-[#07090A]'>
                 <h1>About</h1>
                 <p>This is about section</p>
                 <Skills_Education />
-                <img src="https://picsum.photos/200/300" alt="" />
-                <img src="https://picsum.photos/200/300" alt="" />
-                <img src="https://picsum.photos/200/300" alt="" />
-                <img src="https://picsum.photos/200/300" alt="" />
-                <img src="https://picsum.photos/200/300" alt="" />
-                <img src="https://picsum.photos/200/300" alt="" />
-                <img src="https://picsum.photos/200/300" alt="" />
+                <div className='h-[1000px]'>
+                </div>
             </section>
-            <section id='projects' className='h-screen bg-cyan-600'>
+            <section id='projects' className='h-screen bg-black'>
                 <h1>Projects</h1>
             </section>
             <section id='contact' className='h-screen bg-black'>
