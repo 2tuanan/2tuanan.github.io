@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Projects from '../../components/Projects';
 import Skills_Education from '../../components/Skills_Education';
 import About from '../../components/About';
-import { Parallax, ParallaxLayer } from '@react-spring/parallax';
-import { b } from 'framer-motion/client';
 
 const Home = () => {
     const [offsetY, setOffsetY] = useState(0);
@@ -22,7 +20,7 @@ const Home = () => {
         const calculateProgress = (sectionId) => {
             const section = document.getElementById(sectionId);
             if (section) {
-                const sectionTop = section.offsetTop;
+                const sectionTop = section.offsetTop - 250;
                 const sectionHeight = section.offsetHeight;
                 const scrollYInSection = Math.max(0, window.scrollY - sectionTop);
                 const lingerThreshold = 0.2;
@@ -53,7 +51,7 @@ const Home = () => {
         const aboutSection = document.getElementById('about');
         if (aboutSection) {
             const sectionTop = aboutSection.getBoundingClientRect().top;
-            setShowNav(sectionTop <= 150);
+            setShowNav(sectionTop <= 550);
         }
     }
     const handleSmoothScroll = (e, targetId) => {
@@ -90,11 +88,11 @@ const Home = () => {
         <>  
             {/* Navlink */}
             <div className={`fixed top-0 left-0 z-10 transition-transform duration-300 ease-in-out ${
-                showNav ? 'transform translate-y-0' : 'transform -translate-y-full'
+                showNav ? 'transform translate-y-0' : 'transform -translate-y-full navbar-blur'
             }`}>
                 <nav>
                     <ul className='flex flex-col gap-4 text-white pl-6 pt-6 items-start'>
-                    <li style={{background: `linear-gradient(to right, #134e4a ${progress.about}%, transparent ${progress.about}%)`}} 
+                    <li style={{background: `linear-gradient(to right, #0d9488 ${progress.about}%, transparent ${progress.about}%)`}} 
                         className='relative group rounded-2xl'>   
                             <div ></div>
                             <a onClick={(e) => handleSmoothScroll(e, "about")} href="#about" className="block px-2 py-1 text-white transition-transform duration-300 hover:text-cyan-200">
@@ -102,7 +100,7 @@ const Home = () => {
                                 <span className="absolute inset-0 border border-cyan-200 opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 rounded-2xl"></span>
                             </a>
                         </li>
-                        <li style={{background: `linear-gradient(to right, #134e4a ${progress.projects}%, transparent ${progress.projects}%)`}} 
+                        <li style={{background: `linear-gradient(to right, #0d9488 ${progress.projects}%, transparent ${progress.projects}%)`}} 
                         className='relative group rounded-2xl'>   
                             <div ></div>
                             <a onClick={(e) => handleSmoothScroll(e, "projects")} href="#projects" className="block px-2 py-1 text-white transition-transform duration-300 hover:text-cyan-200">
@@ -162,55 +160,52 @@ const Home = () => {
                 <div className="max-w-6xl mx-auto px-6">
                     {/* Header */}
                     <div
-                        className="text-center mb-12"
+                        className="text-center mb-[10vh]"
                         style={{
-                            transform: `translateY(${offsets.about > 50 ? Math.min((offsets.about - 50) * 0.1, 50) : 0}px)`,
-                            opacity: offsets.about > 50 ? Math.min(1, (offsets.about - 50) / 200) : 0,
+                            transform: `translateY(${offsets.about > 300 ? Math.min((offsets.about - 350) * 0.1, 50) : 0}px)`,
+                            opacity: offsets.about > 300 ? Math.min(1, (offsets.about - 350) / 200) : 0,
                         }}
                     >
                         <h1 className="text-5xl font-bold text-teal-400 mb-4">
                             About Me
                         </h1>
                         <p className="text-xl text-gray-300">
-                            Learn more about my journey, skills, and passions.
+                            I am ...
                         </p>
                     </div>
 
                     {/* Content Sections */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div className="grid grid-cols-1 gap-12 w-screen mb-[20vh]">
                         {/* Introduction */}
                         <div
                             style={{
-                                transform: `translateX(${offsets.about > 100 ? Math.min((offsets.about - 100) * 0.1, 50) : 0}px)`,
-                                opacity: offsets.about > 100 ? Math.min(1, (offsets.about - 100) / 200) : 0,
+                                transform: `translateX(${offsets.about > 700 ? Math.min((offsets.about - 700) * 0.1, 50) : 0}px)`,
+                                opacity: offsets.about > 700 ? Math.min(1, (offsets.about - 700) / 200) : 0,
                             }}
-                            className="space-y-6"
+                            className="space-y-6 w-2/3 mx-auto text-left ml-0"
                         >
                             <h2 className="text-3xl font-semibold text-teal-300">
                                 My Journey
                             </h2>
-                            <p className="text-gray-400 leading-relaxed">
+                            <p className="text-gray-200 leading-relaxed">
                                 I'm a passionate web developer with a keen interest in
                                 creating interactive and visually stunning applications.
-                                My journey began with curiosity and a desire to make an
-                                impact through technology. Over the years, I've honed my
-                                skills in both frontend and backend technologies, blending
-                                creativity and functionality in every project.
+                                I have experience in html, css, javascript, react, nodejs...
                             </p>
                         </div>
 
                         {/* Skills */}
                         <div
                             style={{
-                                transform: `translateX(${offsets.about > 300 ? Math.min((offsets.about - 300) * 0.1, 50) : 0}px)`,
-                                opacity: offsets.about > 300 ? Math.min(1, (offsets.about - 300) / 200) : 0,
-                            }}
-                            className="space-y-8"
+                                transform: `translateX(${offsets.about > 900 ? Math.max(-(offsets.about - 900) * 0.1, -50) : 0}px)`,
+                                opacity: offsets.about > 900 ? Math.min(1, (offsets.about - 900) / 200) : 0,
+                            }}                            
+                            className="space-y-8 w-2/3 mx-auto text-right"
                         >
-                            <h2 className="text-3xl font-semibold text-teal-300">
+                            <h2 className="text-3xl font-semibold text-teal-300 right-0">
                                 My Skills
                             </h2>
-                            <div className="space-y-4">
+                            <div className="space-y-4 right-0">
                                 <div className="relative">
                                     <div className="text-gray-300">Frontend Development</div>
                                     <div className="w-full bg-gray-700 h-3 rounded-lg overflow-hidden mt-2">
@@ -218,10 +213,8 @@ const Home = () => {
                                             className="bg-teal-500 h-3"
                                             style={{
                                                 width: `${Math.min(
-                                                    (offsetY / 500) * 50,
-                                                    100
-                                                )}%`,
-                                                transition: "width 0.3s ease-in-out",
+                                                    (offsetY / 1100) * 70, 80)}%`,
+                                                transition: "width 0.5s ease-in-out",
                                             }}
                                         ></div>
                                     </div>
@@ -233,10 +226,8 @@ const Home = () => {
                                             className="bg-cyan-500 h-3"
                                             style={{
                                                 width: `${Math.min(
-                                                    (offsetY / 700) * 50,
-                                                    100
-                                                )}%`,
-                                                transition: "width 0.3s ease-in-out",
+                                                    (offsetY / 1100) * 70, 70)}%`,
+                                                transition: "width 0.5s ease-in-out",
                                             }}
                                         ></div>
                                     </div>
@@ -248,10 +239,8 @@ const Home = () => {
                                             className="bg-green-500 h-3"
                                             style={{
                                                 width: `${Math.min(
-                                                    (offsetY / 900) * 100,
-                                                    100
-                                                )}%`,
-                                                transition: "width 0.3s ease-in-out",
+                                                    (offsetY / 1100) * 70, 80)}%`,
+                                                transition: "width 0.5s ease-in-out",
                                             }}
                                         ></div>
                                     </div>
@@ -259,12 +248,48 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
+                    
+                    {/* Certifications */}
+                    <div className="w-2/3 mx-auto mt-12">
+                        <h3 className="text-2xl font-semibold text-teal-400 mb-4">Certifications</h3>
+                        <ul className="space-y-6 relative">
+                            {/* Timeline Line */}
+                            <div className="absolute w-1 h-full bg-gray-600 left-4 top-0"></div>
+                            
+                            {/* Timeline Items */}
+                            {[
+                                "Google IT Support Specialization",
+                                "Google UX Design Specialization",
+                                "The Complete 2023 Web Development Bootcamp",
+                            ].map((item, index) => (
+                                <li
+                                    key={index}
+                                    className="relative pl-12"
+                                    style={{
+                                        transform: `translateY(${offsetY > 900 + index * 150 ? 0 : 20}px)`,
+                                        opacity: offsetY > 900 + index * 150 ? 1 : 0,
+                                        transition: `all 0.5s ease-out ${index * 0.2}s`,
+                                    }}
+                                >
+                                    <div
+                                        className="absolute left-0 top-0 w-8 h-8 rounded-full"
+                                        style={{
+                                            backgroundColor: ["#2dd4bf", "#22d3ee", "#4ade80"][index],
+                                            transform: `scale(${offsetY > 900 + index * 150 ? 1 : 0.5})`,
+                                            transition: `transform 0.5s ease-out ${index * 0.2}s`,
+                                        }}
+                                    ></div>
+                                    <h4 className="text-lg font-medium text-gray-200">{item}</h4>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
 
                     {/* Fun Facts */}
                     <div
                         style={{
-                            transform: `translateY(${offsetY * 0.2}px)`,
-                            opacity: Math.max(offsetY - 0, 1 / 600),
+                            transform: `translateY(${offsets.about > 1500 ? Math.min((offsets.about - 1600) * 0.1, 50) : 0}px)`,
+                            opacity: offsets.about > 1500 ? Math.min(1, (offsets.about - 1600) / 200) : 0,
                         }}
                         className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8"
                     >
