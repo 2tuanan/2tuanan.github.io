@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Projects from '../../components/Projects';
 import Skills_Education from '../../components/Skills_Education';
-import Herobanner from '../../components/Herobanner';
+import About from '../../components/About';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { b } from 'framer-motion/client';
 
@@ -12,6 +12,10 @@ const Home = () => {
         about: 0,
         projects: 0,
         contact: 0
+    })
+    const [offsets, setOffsets] = useState({
+        about: 0,
+        projects: 0,
     })
 
     const handleScroll = () => {
@@ -28,9 +32,20 @@ const Home = () => {
             }
             return 0;
         }
+        const calculateRelativeOffset = (sectionId) => {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                const sectionTop = section.getBoundingClientRect().top;
+                return Math.max(0, window.scrollY - sectionTop);
+            }
+        }
         setProgress({
             about: calculateProgress('about'),
             projects: calculateProgress('projects')
+        })
+        setOffsets({
+            about: calculateRelativeOffset('about'),
+            projects: calculateRelativeOffset('projects')
         })
 
         // Show/Hide Nav
@@ -38,7 +53,7 @@ const Home = () => {
         const aboutSection = document.getElementById('about');
         if (aboutSection) {
             const sectionTop = aboutSection.getBoundingClientRect().top;
-            setShowNav(sectionTop <= 50);
+            setShowNav(sectionTop <= 150);
         }
     }
     const handleSmoothScroll = (e, targetId) => {
@@ -109,12 +124,16 @@ const Home = () => {
                 to-[#D4F0DE]'></div>
                 {/* Clouds */}
                 <img className='absolute -left-24 bottom-1/4 -z-[1] scale-[0.6] md:scale-75 lg:scale-100' 
+                    style={{transform: `translateX(${offsetY * -0.5}px)`}}
                     src="/assets/images/Cloud-Left1.svg" alt="" />
                 <img className='absolute left-1/3 top-1/4 -z-[1] scale-50 md:scale-75 lg:scale-100'
+                    style={{transform: `translateX(${offsetY * -0.4}px)`}}
                     src="/assets/images/Cloud-Left2.svg" alt="" />
                 <img className='absolute -right-10 md:right-0 top-1/3 -z-[2] scale-50 md:scale-75 lg:scale-100'
+                    style={{transform: `translateX(${offsetY * 0.4}px)`}}
                     src="/assets/images/Cloud-Right1.svg" alt="" />
                 <img className='absolute right-10 top-1/2 scale-50 md:scale-75 lg:scale-100'
+                    style={{transform: `translateX(${offsetY * 0.4}px)`}}
                     src="/assets/images/Cloud-Right2.svg" alt="" />
                 {/* Mountains */}
                 <img className='absolute bottom-0 w-full -z-[5]'
@@ -139,11 +158,139 @@ const Home = () => {
                     style={{transform: `translateY(${offsetY * 0}px)`}}
                 />
             </div>
-            <section id='about' className='h-full bg-[#07090A]'>
-                <h1>About</h1>
-                <p>This is about section</p>
-                <Skills_Education />
-                <div className='h-[1000px]'>
+            <section id="about" className="h-auto bg-[#07090A] text-white relative py-24">
+                <div className="max-w-6xl mx-auto px-6">
+                    {/* Header */}
+                    <div
+                        className="text-center mb-12"
+                        style={{
+                            transform: `translateY(${offsets.about > 50 ? Math.min((offsets.about - 50) * 0.1, 50) : 0}px)`,
+                            opacity: offsets.about > 50 ? Math.min(1, (offsets.about - 50) / 200) : 0,
+                        }}
+                    >
+                        <h1 className="text-5xl font-bold text-teal-400 mb-4">
+                            About Me
+                        </h1>
+                        <p className="text-xl text-gray-300">
+                            Learn more about my journey, skills, and passions.
+                        </p>
+                    </div>
+
+                    {/* Content Sections */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        {/* Introduction */}
+                        <div
+                            style={{
+                                transform: `translateX(${offsets.about > 100 ? Math.min((offsets.about - 100) * 0.1, 50) : 0}px)`,
+                                opacity: offsets.about > 100 ? Math.min(1, (offsets.about - 100) / 200) : 0,
+                            }}
+                            className="space-y-6"
+                        >
+                            <h2 className="text-3xl font-semibold text-teal-300">
+                                My Journey
+                            </h2>
+                            <p className="text-gray-400 leading-relaxed">
+                                I'm a passionate web developer with a keen interest in
+                                creating interactive and visually stunning applications.
+                                My journey began with curiosity and a desire to make an
+                                impact through technology. Over the years, I've honed my
+                                skills in both frontend and backend technologies, blending
+                                creativity and functionality in every project.
+                            </p>
+                        </div>
+
+                        {/* Skills */}
+                        <div
+                            style={{
+                                transform: `translateX(${offsets.about > 300 ? Math.min((offsets.about - 300) * 0.1, 50) : 0}px)`,
+                                opacity: offsets.about > 300 ? Math.min(1, (offsets.about - 300) / 200) : 0,
+                            }}
+                            className="space-y-8"
+                        >
+                            <h2 className="text-3xl font-semibold text-teal-300">
+                                My Skills
+                            </h2>
+                            <div className="space-y-4">
+                                <div className="relative">
+                                    <div className="text-gray-300">Frontend Development</div>
+                                    <div className="w-full bg-gray-700 h-3 rounded-lg overflow-hidden mt-2">
+                                        <div
+                                            className="bg-teal-500 h-3"
+                                            style={{
+                                                width: `${Math.min(
+                                                    (offsetY / 500) * 50,
+                                                    100
+                                                )}%`,
+                                                transition: "width 0.3s ease-in-out",
+                                            }}
+                                        ></div>
+                                    </div>
+                                </div>
+                                <div className="relative">
+                                    <div className="text-gray-300">Backend Development</div>
+                                    <div className="w-full bg-gray-700 h-3 rounded-lg overflow-hidden mt-2">
+                                        <div
+                                            className="bg-cyan-500 h-3"
+                                            style={{
+                                                width: `${Math.min(
+                                                    (offsetY / 700) * 50,
+                                                    100
+                                                )}%`,
+                                                transition: "width 0.3s ease-in-out",
+                                            }}
+                                        ></div>
+                                    </div>
+                                </div>
+                                <div className="relative">
+                                    <div className="text-gray-300">UI/UX Design</div>
+                                    <div className="w-full bg-gray-700 h-3 rounded-lg overflow-hidden mt-2">
+                                        <div
+                                            className="bg-green-500 h-3"
+                                            style={{
+                                                width: `${Math.min(
+                                                    (offsetY / 900) * 100,
+                                                    100
+                                                )}%`,
+                                                transition: "width 0.3s ease-in-out",
+                                            }}
+                                        ></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Fun Facts */}
+                    <div
+                        style={{
+                            transform: `translateY(${offsetY * 0.2}px)`,
+                            opacity: Math.max(offsetY - 0, 1 / 600),
+                        }}
+                        className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8"
+                    >
+                        <div className="text-center">
+                            <img
+                                src="/assets/images/Coding.gif"
+                                alt="Coding"
+                                className="w-20 mx-auto mb-8"
+                            />
+                            <h3 className="text-xl font-semibold">40+ Hours of Coding</h3>
+                            <p className="text-gray-400">
+                                Committed to mastering the art of development.
+                            </p>
+                        </div>
+                        <div className="text-center">
+                            <img
+                                src="/assets/images/Rocket.gif"
+                                alt="Rocket"
+                                className="w-20 mx-auto mb-4"
+                            />
+                            <h3 className="text-xl font-semibold">1 Project Launched</h3>
+                            <p className="text-gray-400">
+                                Delivering functional and creative solutions.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </section>
             <section id='projects' className='h-screen bg-black'>
