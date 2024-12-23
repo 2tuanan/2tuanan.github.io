@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Projects from '../../components/Projects';
-import Skills_Education from '../../components/Skills_Education';
-import About from '../../components/About';
+import Navbar from '../../components/Navbar';
+import Herobanner from '../../components/Herobanner';
 
 const Home = () => {
     const [offsetY, setOffsetY] = useState(0);
@@ -9,7 +8,6 @@ const Home = () => {
     const [progress, setProgress] = useState({
         about: 0,
         projects: 0,
-        contact: 0
     })
     const [offsets, setOffsets] = useState({
         about: 0,
@@ -87,75 +85,9 @@ const Home = () => {
     return (
         <>  
             {/* Navlink */}
-            <div className={`fixed top-0 left-0 z-10 transition-transform duration-300 ease-in-out ${
-                showNav ? 'transform translate-y-0' : 'transform -translate-y-full navbar-blur'
-            }`}>
-                <nav>
-                    <ul className='flex flex-col gap-4 text-white pl-6 pt-6 items-start'>
-                    <li style={{background: `linear-gradient(to right, #0d9488 ${progress.about}%, transparent ${progress.about}%)`}} 
-                        className='relative group rounded-2xl'>   
-                            <div ></div>
-                            <a onClick={(e) => handleSmoothScroll(e, "about")} href="#about" className="block px-2 py-1 text-white transition-transform duration-300 hover:text-cyan-200">
-                                About
-                                <span className="absolute inset-0 border border-cyan-200 opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 rounded-2xl"></span>
-                            </a>
-                        </li>
-                        <li style={{background: `linear-gradient(to right, #0d9488 ${progress.projects}%, transparent ${progress.projects}%)`}} 
-                        className='relative group rounded-2xl'>   
-                            <div ></div>
-                            <a onClick={(e) => handleSmoothScroll(e, "projects")} href="#projects" className="block px-2 py-1 text-white transition-transform duration-300 hover:text-cyan-200">
-                                Work
-                                <span className="absolute inset-0 border border-cyan-200 opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 rounded-2xl"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a onClick={(e) => handleSmoothScroll(e, "contact")} href="#contact" className='hover:text-cyan-300'>Contact</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            <Navbar progress={progress} handleSmoothScroll={handleSmoothScroll} showNav={showNav} />
             
-
-
-            <div className='relative h-screen overflow-hidden'>
-                <div className='absolute -z-10 top-0 left-0 w-full h-full bg-gradient-to-b from-[#9ECCCA] 
-                to-[#D4F0DE]'></div>
-                {/* Clouds */}
-                <img className='absolute -left-24 bottom-1/4 -z-[1] scale-[0.6] md:scale-75 lg:scale-100' 
-                    style={{transform: `translateX(${offsetY * -0.5}px)`}}
-                    src="/assets/images/Cloud-Left1.svg" alt="" />
-                <img className='absolute left-1/3 top-1/4 -z-[1] scale-50 md:scale-75 lg:scale-100'
-                    style={{transform: `translateX(${offsetY * -0.4}px)`}}
-                    src="/assets/images/Cloud-Left2.svg" alt="" />
-                <img className='absolute -right-10 md:right-0 top-1/3 -z-[2] scale-50 md:scale-75 lg:scale-100'
-                    style={{transform: `translateX(${offsetY * 0.4}px)`}}
-                    src="/assets/images/Cloud-Right1.svg" alt="" />
-                <img className='absolute right-10 top-1/2 scale-50 md:scale-75 lg:scale-100'
-                    style={{transform: `translateX(${offsetY * 0.4}px)`}}
-                    src="/assets/images/Cloud-Right2.svg" alt="" />
-                {/* Mountains */}
-                <img className='absolute bottom-0 w-full -z-[5]'
-                    style={{transform: `translateY(${offsetY * 0.3}px)`}}
-                    src="/assets/images/FourMount.svg" alt="" />
-                <img className='absolute bottom-0 w-full -z-[4]'
-                    style={{transform: `translateY(${offsetY * 0.25}px)`}}
-                    src="/assets/images/ThirMount.svg" alt="" />
-                <img className='absolute bottom-0 w-full -z-[3]'
-                    style={{transform: `translateY(${offsetY * 0.2}px)`}}
-                    src="/assets/images/SecMount.svg" alt="" />
-                <img className='absolute bottom-0 w-full -z-[2]'
-                    style={{transform: `translateY(${offsetY * 0.15}px)`}}
-                    src="/assets/images/ForeMount.svg" alt="" />
-                {/* Trees */}
-                <img className='absolute bottom-0 w-full -z-[2]'
-                    style={{transform: `translateY(${offsetY * 0.1}px)`}}
-                    src="/assets/images/BackTrees.svg" alt="" />
-                <img className="absolute -bottom-[1px] w-full"
-                    src="/assets/images/ForeTrees.svg"
-                    alt=""
-                    style={{transform: `translateY(${offsetY * 0}px)`}}
-                />
-            </div>
+            <Herobanner offsetY={offsetY} />
             <section id="about" className="h-auto bg-[#07090A] text-white relative py-24">
                 <div className="max-w-6xl mx-auto px-6">
                     {/* Header */}
@@ -251,10 +183,14 @@ const Home = () => {
                     
                     {/* Certifications */}
                     <div className="w-2/3 mx-auto mt-12">
-                        <h3 className="text-2xl font-semibold text-teal-400 mb-4">Certifications</h3>
+                        <h3 style={{
+                            transform: `translateX(${offsets.about > 900 ? Math.min((offsets.about - 1000) * 0.1, 50) : 0}px)`,
+                            opacity: offsets.about > 900 ? Math.min(1, (offsets.about - 1000) / 200) : 0,
+                        }}
+                        className="text-2xl font-semibold text-teal-400 mb-4">Certifications</h3>
                         <ul className="space-y-6 relative">
                             {/* Timeline Line */}
-                            <div className="absolute w-1 h-full bg-gray-600 left-4 top-0"></div>
+                            <div className="absolute w-[0.15rem] h-full bg-gray-600 left-4 top-0"></div>
                             
                             {/* Timeline Items */}
                             {[
@@ -266,16 +202,16 @@ const Home = () => {
                                     key={index}
                                     className="relative pl-12"
                                     style={{
-                                        transform: `translateY(${offsetY > 900 + index * 150 ? 0 : 20}px)`,
-                                        opacity: offsetY > 900 + index * 150 ? 1 : 0,
+                                        transform: `translateY(${offsetY > 1000 + index * 150 ? 0 : 20}px)`,
+                                        opacity: offsetY > 1000 + index * 150 ? 1 : 0,
                                         transition: `all 0.5s ease-out ${index * 0.2}s`,
                                     }}
                                 >
                                     <div
-                                        className="absolute left-0 top-0 w-8 h-8 rounded-full"
+                                        className="absolute left-[0.43rem] top-0 w-5 h-5 rounded-full"
                                         style={{
                                             backgroundColor: ["#2dd4bf", "#22d3ee", "#4ade80"][index],
-                                            transform: `scale(${offsetY > 900 + index * 150 ? 1 : 0.5})`,
+                                            transform: `scale(${offsetY > 1000 + index * 150 ? 1 : 0.5})`,
                                             transition: `transform 0.5s ease-out ${index * 0.2}s`,
                                         }}
                                     ></div>
@@ -288,8 +224,8 @@ const Home = () => {
                     {/* Fun Facts */}
                     <div
                         style={{
-                            transform: `translateY(${offsets.about > 1500 ? Math.min((offsets.about - 1600) * 0.1, 50) : 0}px)`,
-                            opacity: offsets.about > 1500 ? Math.min(1, (offsets.about - 1600) / 200) : 0,
+                            transform: `translateY(${offsets.about > 1600 ? Math.min((offsets.about - 1700) * 0.1, 50) : 0}px)`,
+                            opacity: offsets.about > 1600 ? Math.min(1, (offsets.about - 1700) / 200) : 0,
                         }}
                         className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8"
                     >
