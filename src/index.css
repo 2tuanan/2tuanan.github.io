@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.image-overlay {
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    );
+  }
+  
+  .tilt {
+    transform-style: preserve-3d;
+    transition: transform 0.3s;
+  }
+  
+  .tilt:hover {
+    transform: rotateX(10deg) rotateY(10deg);
+  }
+  

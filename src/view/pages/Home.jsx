@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import Herobanner from '../../components/Herobanner';
 import AboutHeader from '../../components/AboutContent/AboutHeader';
-import Info_Skills from '../../components/AboutContent/Info_Skills';
+import InfoAndSkills from '../../components/AboutContent/InfoAndSkills';
 import Certifications from '../../components/AboutContent/Certifications';
 import FunFact from '../../components/AboutContent/FunFact';
+import Projects from '../../components/Projects';
 
 const Home = () => {
     const [offsetY, setOffsetY] = useState(0);
@@ -22,7 +23,7 @@ const Home = () => {
         const calculateProgress = (sectionId) => {
             const section = document.getElementById(sectionId);
             if (section) {
-                const sectionTop = section.offsetTop - 250;
+                const sectionTop = section.offsetTop - 350;
                 const sectionHeight = section.offsetHeight;
                 const scrollYInSection = Math.max(0, window.scrollY - sectionTop);
                 const lingerThreshold = 0.2;
@@ -95,14 +96,13 @@ const Home = () => {
                 <div className="max-w-6xl mx-auto px-6">
                     {/* Header */}
                     <AboutHeader offsets={offsets} />
-                    <Info_Skills offsetY={offsetY} offsets={offsets} />
+                    <InfoAndSkills offsetY={offsetY} offsets={offsets} />
                     <Certifications offsetY={offsetY} offsets={offsets} />                      
                     <FunFact offsets={offsets} />
-                    
                 </div>
             </section>
-            <section id='projects' className='h-screen bg-black'>
-                <h1>Projects</h1>
+            <section id='projects'>
+                <Projects offsets={offsets} />
             </section>
             <section id='contact' className='h-screen bg-black'>
                 <h1>Contact</h1>

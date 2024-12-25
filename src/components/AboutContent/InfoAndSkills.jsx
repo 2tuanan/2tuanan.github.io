@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Info_Skills = ({offsetY, offsets}) => {
+const InfoAndSkills = ({offsetY, offsets}) => {
     const isMd = window.innerWidth >= 768 && window.innerWidth < 1024;
     const isLg = window.innerWidth >= 1024;
     const px = isLg ? 60 : isMd ? 40 : 5;
@@ -27,8 +27,8 @@ const Info_Skills = ({offsetY, offsets}) => {
                 {/* Skills */}
                 <div
                     style={{
-                        transform: `translateX(${offsets.about > 880 ? Math.max(-(offsets.about - 880) * 0.1, -px) : 0}px)`,
-                        opacity: offsets.about > 880 ? Math.min(1, (offsets.about - 880) / 1) : 0,
+                        transform: `translateX(${offsets.about > 800 ? Math.max(-(offsets.about - 820) * 0.1, -px) : 0}px)`,
+                        opacity: offsets.about > 800 ? Math.min(1, (offsets.about - 820) / 1) : 0,
                     }}                            
                     className="space-y-8 w-full md:w-3/5 mx-auto text-center md:text-right mr-0"
                 >
@@ -43,7 +43,7 @@ const Info_Skills = ({offsetY, offsets}) => {
                                     className="bg-teal-500 h-3"
                                     style={{
                                         width: `${Math.min(
-                                            (offsetY / 800) * 70, 80)}%`,
+                                            (offsetY / 830) * 70, 80)}%`,
                                         transition: "width 0.6s ease-in-out",
                                     }}
                                 ></div>
@@ -56,7 +56,7 @@ const Info_Skills = ({offsetY, offsets}) => {
                                     className="bg-cyan-500 h-3"
                                     style={{
                                         width: `${Math.min(
-                                            (offsetY / 820) * 60, 70)}%`,
+                                            (offsetY / 840) * 60, 70)}%`,
                                         transition: "width 0.6s ease-in-out",
                                     }}
                                 ></div>
@@ -82,4 +82,4 @@ const Info_Skills = ({offsetY, offsets}) => {
     );
 };
 
-export default Info_Skills;
+export default InfoAndSkills;

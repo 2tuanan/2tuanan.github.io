@@ -17,6 +17,7 @@ const Navbar = ({ progress, handleSmoothScroll, showNav }) => (
                             href={`#${section}`}
                             className="block px-2 py-1 text-white transition-transform duration-300 hover:text-cyan-200"
                         >
+                            <span className="absolute inset-0 border border-cyan-200 opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 rounded-2xl"></span>
                             {section.charAt(0).toUpperCase() + section.slice(1)}
                         </a>
                     </li>
