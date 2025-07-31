@@ -27,8 +27,8 @@ const InfoAndSkills = ({offsetY, offsets}) => {
                 {/* Skills */}
                 <div
                     style={{
-                        transform: `translateX(${offsets.about > 800 ? Math.max(-(offsets.about - 820) * 0.1, -px) : 0}px)`,
-                        opacity: offsets.about > 800 ? Math.min(1, (offsets.about - 820) / 1) : 0,
+                        transform: `translateX(${offsets.about > 750 ? Math.max(-(offsets.about - 750) * 0.1, -px) : 0}px)`,
+                        opacity: offsets.about > 750 ? Math.min(1, (offsets.about - 750) / 200) : 0,
                     }}                            
                     className="space-y-8 w-full md:w-3/5 mx-auto text-center md:text-right mr-0"
                 >

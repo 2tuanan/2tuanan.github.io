@@ -5,8 +5,8 @@ const Certifications = ({offsets, offsetY}) => {
         <div>
             <div className="w-2/3 mx-auto mt-12">
                 <h3 style={{
-                    transform: `translateX(${offsets.about > 1000 ? Math.min((offsets.about - 1000) * 0.1, 50) : 0}px)`,
-                    opacity: offsets.about > 1000 ? Math.min(1, (offsets.about - 1000) / 200) : 0,
+                    transform: `translateX(${offsets.about > 800 ? Math.min((offsets.about - 800) * 0.1, 50) : 0}px)`,
+                    opacity: offsets.about > 800 ? Math.min(1, (offsets.about - 800) / 200) : 0,
                 }}
                 className="text-2xl font-semibold text-teal-400 mb-4">Certifications</h3>
                 <ul className="space-y-6 relative">
